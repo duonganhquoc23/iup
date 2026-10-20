@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Món Quà Dành Riêng Cho Bé Iu</title>
+    <!-- Phông chữ siêu đáng iu từ Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ================= BẢNG MÀU KẸO NGỌT ================= */
+        :root {
+            --bg-color: #ffe6ea;
+            --primary-pink: #ff8fab;
+            --dark-pink: #fb6f92;
+            --soft-yellow: #fff3b0;
+            --soft-blue: #c0fdff;
+            --text-color: #5c4d5d;
+            --font-cute: 'Baloo 2', cursive;
+            --font-title: 'Pacifico', cursive;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: var(--font-cute);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* ================= MÂY TRÔI BỒNG BỀNH ================= */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.8;
+            animation: floatCloud linear infinite;
+            z-index: 1;
+        }
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+        .cloud1 { width: 120px; height: 40px; top: 10%; left: -150px; --dur: 25s; }
+        .cloud1::before { width: 50px; height: 50px; top: -25px; left: 15px; }
+        .cloud1::after { width: 40px; height: 40px; top: -15px; right: 15px; }
+        
+        .cloud2 { width: 80px; height: 25px; top: 30%; left: -100px; --dur: 18s; opacity: 0.6; }
+        .cloud2::before { width: 35px; height: 35px; top: -15px; left: 10px; }
+        .cloud2::after { width: 25px; height: 25px; top: -10px; right: 10px; }
+
+        @keyframes floatCloud {
+            0% { transform: translateX(-150px); }
+            100% { transform: translateX(120vw); }
+        }
+
+        /* ================= NÚT BẤM CUTE CHUNKY ================= */
+        .btn-cute {
+            background-color: var(--primary-pink);
+            color: white;
+            font-family: var(--font-cute);
+            font-size: 1.3rem;
+            font-weight: 800;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 var(--dark-pink), 0 10px 15px rgba(251, 111, 146, 0.3);
+            transition: all 0.1s;
+            display: inline-block;
+            outline: none;
+        }
+        .btn-cute:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0 var(--dark-pink), 0 2px 5px rgba(251, 111, 146, 0.3);
+        }
+
+        /* ================= CÁC MÀN HÌNH ================= */
+        .screen {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+            z-index: 10;
+        }
+        .screen.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 20;
+            animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* ================= MÀN HÌNH 1: CHÀO MỪNG ================= */
+        .welcome-box {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 40px;
+            border: 4px dashed var(--primary-pink);
+            box-shadow: 0 15px 30px rgba(255, 143, 171, 0.2);
+            position: relative;
+        }
+        .welcome-box h1 {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--dark-pink);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .welcome-box p {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: #8a7a8d;
+        }
+        .float-emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        /* ================= MÀN HÌNH 2: NHẬP TÊN ================= */
+        .input-box {
+            text-align: center;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            width: 90%;
+            max-width: 400px;
+        }
+        .input-box h2 {
+            font-size: 1.8rem;
+            color: var(--dark-pink);
+            margin-bottom: 20px;
+        }
+        #input-name {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-family: var(--font-cute);
+            font-weight: 700;
+            color: var(--dark-pink);
+            border: 3px solid #ffe1e8;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            outline: none;
+            text-align: center;
+            background-color: #fffafb;
+            transition: border 0.3s;
+        }
+        #input-name:focus {
+            border-color: var(--primary-pink);
+            background-color: white;
+        }
+        #input-name::placeholder {
+            color: #d1c1d4;
+            font-weight: 500;
+        }
+
+        /* ================= MÀN HÌNH 3: VƯỜN HOA CHIBI ================= */
+        #garden-screen {
+            background: linear-gradient(to bottom, #b5e8ee, #fdfbfb 60%, var(--bg-color));
+            justify-content: flex-start;
+        }
+        #ground {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 18vh;
+            background: #a2de96;
+            border-radius: 50% 50% 0 0 / 30px 30px 0 0;
+            border-top: 8px solid #84cc75;
+            z-index: 22;
+        }
+        #flowers-container {
+            position: absolute;
+            bottom: 15vh; left: 0; width: 100%; height: 60vh;
+            z-index: 23;
+        }
+
+        /* HOA CHIBI MŨM MĨM */
+        .cute-flower {
+            position: absolute;
+            bottom: 0;
+            transform-origin: bottom center;
+            animation: wiggle var(--sway) ease-in-out infinite alternate;
+        }
+        .cute-stem {
+            position: absolute;
+            bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 10px; height: 0;
+            background: #84cc75;
+            border-radius: 5px;
+            transition: height 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .cute-head {
+            position: absolute;
+            bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 60px;
+            transition: bottom 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 2;
+        }
+        .cute-petal {
+            position: absolute;
+            width: 35px; height: 35px;
+            background: var(--p-color);
+            border-radius: 50%;
+            top: 12.5px; left: 12.5px;
+            transform-origin: center;
+            transform: rotate(var(--rot)) translateY(-25px) scale(0);
+            transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s;
+            box-shadow: inset -3px -3px 0 rgba(0,0,0,0.05);
+        }
+        .cute-center {
+            position: absolute;
+            top: 10px; left: 10px;
+            width: 40px; height: 40px;
+            background: var(--soft-yellow);
+            border-radius: 50%;
+            z-index: 3;
+            transform: scale(0);
+            transition: transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.5s;
+            box-shadow: inset -3px -3px 0 rgba(200, 150, 0, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: bold; color: #b58b00;
+        }
+        
+        .cute-flower.growing .cute-stem { height: var(--h); }
+        .cute-flower.growing .cute-head { bottom: calc(var(--h) - 30px); }
+        .cute-flower.growing .cute-petal { transform: rotate(var(--rot)) translateY(-25px) scale(1); }
+        .cute-flower.growing .cute-center { transform: scale(1); }
+
+        @keyframes wiggle {
+            0% { transform: rotate(-8deg); }
+            100% { transform: rotate(8deg); }
+        }
+
+        #garden-ui {
+            position: absolute;
+            top: 15%;
+            left: 50%; transform: translateX(-50%);
+            text-align: center;
+            z-index: 25;
+            width: 95%;
+            opacity: 0; visibility: hidden;
+            transition: opacity 1s;
+        }
+        #garden-ui.visible { opacity: 1; visibility: visible; }
+        
+        .cute-bubble {
+            background: white;
+            padding: 15px 30px;
+            border-radius: 40px;
+            font-size: 1.6rem;
+            color: var(--dark-pink);
+            font-weight: 800;
+            border: 4px solid var(--soft-yellow);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* ================= MÀN HÌNH 4: THIỆP ================= */
+        #card-screen {
+            background: rgba(255, 225, 232, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 40; 
+        }
+        .card-body {
+            background: white;
+            width: 90%; max-width: 500px;
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(251, 111, 146, 0.2);
+            border: 5px solid #ffb3c6;
+            position: relative;
+        }
+        .card-body::before {
+            content: '🎀';
+            position: absolute;
+            top: -25px; left: 50%; transform: translateX(-50%);
+            font-size: 40px;
+        }
+        .card-title {
+            color: var(--dark-pink);
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        .card-greeting {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        .card-greeting span { color: var(--primary-pink); }
+        
+        .card-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #6d5e70;
+            background: #fff5f7;
+            padding: 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-align: justify;
+        }
+
+        .card-signature {
+            display: block;
+            text-align: right;
+            color: var(--dark-pink);
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-top: 15px;
+            font-family: var(--font-cute);
+        }
+
+        /* ================= FOOTER ================= */
+        #footer-ip {
+            position: fixed;
+            bottom: 10px;
+            right: 15px;
+            font-size: 1rem;
+            color: #fb6f92;
+            font-weight: 800;
+            z-index: 100;
+            pointer-events: none;
+            background: rgba(255,255,255,0.6);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Nhạc nền Vườn Hoa Nhí -->
+    <audio id="bg-music" src="vuon-hoa-nhi.mp3" loop preload="auto"></audio>
+
+    <!-- Mây bay nền -->
+    <div class="cloud cloud1" style="animation-duration: var(--dur);"></div>
+    <div class="cloud cloud2" style="animation-duration: var(--dur); animation-delay: 5s;"></div>
+
+    <!-- MÀN 1: CHÀO MỪNG -->
+    <section id="welcome-screen" class="screen active">
+        <div class="welcome-box">
+            <span class="float-emoji" style="top: -20px; left: -20px;">🍓</span>
+            <span class="float-emoji" style="bottom: -20px; right: -15px; animation-delay: 1s;">✨</span>
+            <h1 class="title-font">Tèn ten ten...</h1>
+            <p>Có một món quà nhỏ anh chuẩn bị riêng cho bé iu nè! 🧸</p>
+            <button class="btn-cute" onclick="playAudioAndShowInput()">Mở quà ngay 💌</button>
+        </div>
+    </section>
+
+    <!-- MÀN 2: NHẬP TÊN -->
+    <section id="input-screen" class="screen">
+        <div class="input-box">
+            <h2>Công chúa của anh tên là gì dạ? 🐣</h2>
+            <input type="text" id="input-name" placeholder="Nhập tên em vào đây nhoa..." autocomplete="off">
+            <button class="btn-cute" onclick="handleNameSubmit()">Gửi tên xinh 🎀</button>
+        </div>
+    </section>
+
+    <!-- MÀN 3: VƯỜN HOA CHIBI -->
+    <section id="garden-screen" class="screen">
+        <div id="ground"></div>
+        <div id="flowers-container"></div>
+        
+        <div id="garden-ui">
+            <div class="cute-bubble">Khu vườn ngập hoa của bé <span id="garden-name-display" style="color:#fb6f92"></span> 🌸</div>
+            <br>
+            <button class="btn-cute" onclick="showGreetingCard()">Đọc lời chúc đi 💖</button>
+        </div>
+    </section>
+
+    <!-- MÀN 4: THIỆP CHÚC MỪNG -->
+    <section id="card-screen" class="screen">
+        <div class="card-body">
+            <div class="card-title">Happy 20/10</div>
+            <div class="card-greeting">Gửi bé iu <span><span id="card-name-display"></span></span> của anh! 🥰</div>
+            <div class="card-text">
+                Nhân ngày 20/10, anh chúc bé iu luôn xinh đẹp, rạng rỡ và lúc nào cũng cười thật tươi. Cảm ơn em vì đã đến và tô điểm cho mỗi ngày của anh đều trở nên thật ngọt ngào. Dù thế giới ngoài kia có bộn bề ra sao, hãy nhớ luôn có bờ vai anh ở đây chở che và yêu thương em hết mực. Chúc công chúa nhỏ của anh một ngày 20/10 thật trọn vẹn và bình yên. Thương em rất nhiều! 🍓💖
+                <span class="card-signature">~ aiu Dương Quốc ~</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footer-ip">Bản quyền thuộc @aiu DQ🐣</div>
+
+    <script>
+        'use strict';
+
+        let userName = "";
+        let isGardenInit = false;
+        
+        // Màu cánh hoa pastel cute
+        const cuteColors = ['#ff9ebb', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'];
+        // Biểu cảm nhụy hoa
+        const cuteFaces = ['^◡^', 'UwU', '♥_♥', '>‿<', '•ᴗ•', '★_★', '≧◡≦'];
+
+        function switchScreen(targetId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(targetId).classList.add('active');
+        }
+
+        function playAudioAndShowInput() {
+            const music = document.getElementById('bg-music');
+            music.volume = 0.6;
+            music.play().catch(e => console.log("Cần tương tác để phát nhạc"));
+            
+            switchScreen('input-screen');
+            setTimeout(() => document.getElementById('input-name').focus(), 500);
+        }
+
+        document.getElementById('input-name').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') handleNameSubmit();
+        });
+
+        function handleNameSubmit() {
+            const input = document.getElementById('input-name').value.trim();
+            if (!input) {
+                alert("Em quên nhập tên kìa! Nhập đi rồi mới có quà 🍓");
+                return;
+            }
+            userName = input;
+            document.getElementById('garden-name-display').textContent = userName;
+            document.getElementById('card-name-display').textContent = userName;
+
+            switchScreen('garden-screen');
+            if (!isGardenInit) startCuteGarden();
+        }
+
+        function startCuteGarden() {
+            isGardenInit = true;
+            const container = document.getElementById('flowers-container');
+            
+            // TĂNG GẤP ĐÔI SỐ LƯỢNG HOA CHO VƯỜN DÀY ĐẶC
+            const numFlowers = window.innerWidth < 600 ? 30 : 60;
+
+            // Xếp hoa so le
+            const positions = [];
+            for(let i=0; i<numFlowers; i++) {
+                positions.push({
+                    left: 2 + Math.random() * 96,
+                    delay: Math.random() * 3500,
+                    z: Math.floor(Math.random() * 10)
+                });
+            }
+            positions.sort((a,b) => a.z - b.z);
+
+            positions.forEach(p => {
+                createCuteFlower(p.left, p.delay, p.z, container);
+            });
+
+            setTimeout(() => {
+                document.getElementById('garden-ui').classList.add('visible');
+            }, 5500);
+        }
+
+        function createCuteFlower(left, delay, z, container) {
+            const fl = document.createElement('div');
+            fl.className = 'cute-flower';
+            fl.style.left = left + '%';
+            fl.style.zIndex = z;
+            
+            const scale = 0.5 + (z * 0.06); // z nhỏ thì hoa nhỏ
+            fl.style.transform = `scale(${scale})`;
+            fl.style.setProperty('--sway', (2 + Math.random() * 2) + 's');
+
+            const stem = document.createElement('div');
+            stem.className = 'cute-stem';
+            fl.style.setProperty('--h', (60 + Math.random() * 180) + 'px');
+
+            const head = document.createElement('div');
+            head.className = 'cute-head';
+
+            const color = cuteColors[Math.floor(Math.random() * cuteColors.length)];
+            
+            // 5 cánh hoa tròn xoe
+            for (let i = 0; i < 5; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'cute-petal';
+                petal.style.setProperty('--rot', (i * 72) + 'deg');
+                petal.style.setProperty('--p-color', color);
+                head.appendChild(petal);
+            }
+
+            // Nhụy hoa có khuôn mặt
+            const center = document.createElement('div');
+            center.className = 'cute-center';
+            center.textContent = cuteFaces[Math.floor(Math.random() * cuteFaces.length)];
+            head.appendChild(center);
+
+            fl.appendChild(stem);
+            fl.appendChild(head);
+            container.appendChild(fl);
+
+            setTimeout(() => fl.classList.add('growing'), delay);
+        }
+
+        function showGreetingCard() {
+            switchScreen('card-screen');
+        }
+    </script>
+</body>
+</html>
